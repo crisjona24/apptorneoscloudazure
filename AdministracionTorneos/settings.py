@@ -22,7 +22,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-n_*u@r*j*$i=osfyhh38ly@wyzt!*uky99h$kkkh1t%po8*r#i'
+
+SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-7ppocbnx@w71dcuinn*t^_mzal(t@o01v3fee27g%rg18fc5d@')
+
+#SECRET_KEY = 'django-insecure-n_*u@r*j*$i=osfyhh38ly@wyzt!*uky99h$kkkh1t%po8*r#i'
 #SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -91,17 +94,17 @@ WSGI_APPLICATION = 'AdministracionTorneos.wsgi.application'
 #}
 
 # DBHOST is only the server name, not the full URL
-hostname = os.environ['DBHOST']
+hostname = os.environ['admintorneos-server']
 
 # Configure Postgres database; the full username for PostgreSQL flexible server is
 # username (not @sever-name).
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ['DBNAME'],
+        'NAME': os.environ['postgres'],
         'HOST': hostname + ".postgres.database.azure.com",
-        'USER': os.environ['DBUSER'],
-        'PASSWORD': os.environ['DBPASS'] 
+        'USER': os.environ['imtvvkfwao'],
+        'PASSWORD': os.environ['282577E266W216J4$'] 
     }
 }
 
