@@ -27,9 +27,12 @@ SECRET_KEY = 'django-insecure-n_*u@r*j*$i=osfyhh38ly@wyzt!*uky99h$kkkh1t%po8*r#i
 
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = 'RENDER' not in os.environ
+
+ALLOWED_HOSTS = [os.environ['WEBSITE_HOSTNAME']] if 'WEBSITE_HOSTNAME' in os.environ else []
+CSRF_TRUSTED_ORIGINS = ['https://'+ os.environ['WEBSITE_HOSTNAME']] if 'WEBSITE_HOSTNAME' in os.environ else []
 DEBUG = False
 
-ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = []
 #RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 #if RENDER_EXTERNAL_HOSTNAME: 
 #    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
@@ -87,27 +90,32 @@ WSGI_APPLICATION = 'AdministracionTorneos.wsgi.application'
 #    }
 #}
 
+# DBHOST is only the server name, not the full URL
+hostname = os.environ['DBHOST']
+
+# Configure Postgres database; the full username for PostgreSQL flexible server is
+# username (not @sever-name).
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.environ['DBNAME'],
-        'HOST': os.environ['DBHOST'],
+        'HOST': hostname + ".postgres.database.azure.com",
         'USER': os.environ['DBUSER'],
         'PASSWORD': os.environ['DBPASS'] 
     }
 }
 
-"""
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-       'NAME': 'postgres',
-       'USER': 'postgres',
-       'HOST': 'db_postgres',
-      'PORT': 5432,
-    }
-}
-"""
+#
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql',
+#       'NAME': 'postgres',
+#       'USER': 'postgres',
+#       'HOST': 'db_postgres',
+#      'PORT': 5432,
+ #   }
+#}
+
 
 #DATABASES = {
 #    'default':  dj_database_url .config(
