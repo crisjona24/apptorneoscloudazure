@@ -94,7 +94,7 @@ WSGI_APPLICATION = 'AdministracionTorneos.wsgi.application'
 #}
 
 # DBHOST is only the server name, not the full URL
-hostname = os.environ['admintorneos-server']
+"""hostname = os.environ['admintorneos-server']
 
 # Configure Postgres database; the full username for PostgreSQL flexible server is
 # username (not @sever-name).
@@ -105,6 +105,17 @@ DATABASES = {
         'HOST': hostname + ".postgres.database.azure.com",
         'USER': os.environ['imtvvkfwao'],
         'PASSWORD': os.environ['282577E266W216J4$'] 
+    }
+}
+"""
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'torneosadminbd',
+        'USER': 'pickylard4',
+        'HOST': 'torneosadminbd.postgres.database.azure.com',
+        'SSLMODE' : True,
+        'PORT': 5432,
     }
 }
 
